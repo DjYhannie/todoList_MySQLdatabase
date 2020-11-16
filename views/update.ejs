@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update</title>
+    <style>
+        body {
+            background-image: url("https://image.freepik.com/free-photo/desk-office-top-view-with-computer-notepad-pen-coffee-plant-black-background_149391-114.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        h1{
+            color: palevioletred;
+        }
+
+        .todo {
+            width: 50%;
+            margin-left: 25%;
+            background: #111845a6;
+            margin-top: 5%;
+            box-sizing: border-box;
+            box-shadow: 0 20px 50px rgb(23, 32, 90);
+            border: 2px solid #2a3cad;
+            color: white;
+            padding: 20px;
+
+        }
+
+        .todo:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: 0.5s;
+            pointer-events: none;
+        }
+
+        .todo .box1 {
+            border: 1px solid #f0a591;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 10px rgba(9, 0, 0, 0.5);
+
+        }
+
+        .todo:hover:before {
+            left: -50%;
+            transform: skewX(-5deg);
+        }
+
+        @keyframes animated-border {
+            0% {
+                box-shadow: 0 0 0 0 rgb(23, 32, 90, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+            }
+        }
+
+        .updateContent{
+            margin-top: 5%;
+        }
+        .updatename {
+            animation: animated-border 1.5s infinite;
+            color: white;
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 3px solid rgb(11, 173, 236);
+            padding: 10px 10px;
+            width: 200px;
+            font-size: 18px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s
+        }
+
+        .updatename:focus {
+            width: 250px;
+            border-color: #f0a591;
+        }
+        .updateactor {
+            animation: animated-border 1.5s infinite;
+            color: white;
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 3px solid rgb(11, 173, 236);
+            padding: 10px 10px;
+            width: 200px;
+            font-size: 18px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s
+        }
+
+        .updateactor:focus {
+            width: 250px;
+            border-color: #f0a591;
+        }
+
+        .updatedate {
+            animation: animated-border 1.5s infinite;
+            color: white;
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 3px solid rgb(11, 173, 236);
+            padding: 10px 10px;
+            width: 200px;
+            font-size: 18px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s
+        }
+
+        .updatedate:focus {
+            width: 250px;
+            border-color: #f0a591;
+
+        }
+        .button {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 15px auto;
+            text-align: center;
+            border: 3px solid #0c6ff0;
+            padding: 14px 40px;
+            outline: none;
+            color: white;
+            font-size: 18px;
+            border-radius: 24px;
+            transition: 0.25s;
+            cursor: pointer
+        }
+
+        .button:hover {
+            background: #0c6ff0;
+
+        }
+    </style>
+</head>
+
+<body>
+    <% Date.prototype.toDateInputValue = (function() {
+        var local = new Date(this);
+        local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+        return local.toJSON().slice(0,10);
+    });%>
+    <div class="todo">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <div class="box1">
+            <h1>Update Todo List</h1>
+            <form action="/todo/update/<%=data.id%>" method="post">
+                <div class="updateContent">
+                    <input type="text" class="updatename" name="title" required value="<%=data.title%>">
+                    <input type="text" class="updateactor" name="actor" required value="<%=data.actor%>">
+                    <input type="date" class="updatedate" name="tobeDone" required value="<%=data.tobeDone.toDateInputValue()%>">
+                    <button class="button" type="submit">Update</button>
+                </div>
+
+            </form>
+    </div>
+</body>
+
+</html>
